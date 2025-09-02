@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Community Hub -INDIA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Solar Community Hub -India</h1>
+            <p>Studets please  Search your Certificate and Download </p>
+            
+            <div class="setup-instructions">
+                <h3>Participation Instructions</h3>
+                <a href="https://forms.office.com/r/XfBnPEq3Ss">Online Form</a><br>
+                <ul style="list-style: disc; text-align: left; padding-left: 40px;">
+    <li>✔️Your certificate will be generated only after 24 hours of form submission, and this form is valid from 26th August to 7th September.</li>
+    <li>✔️Enter the name you used while taking the test; the certificate will also be available with the same name.</li>
+    <li>✔️If a student has not taken the exam, their certificate will not be available.</li>
+    <li>✔️Once the form date is over, no certificate will be generated after that date.</li>
+  </ul>
+            </div>
+        </div>
+
+        <div class="search-card">
+            <div style="position:relative;">
+                <h2>🔍 Search Your Certificate</h2>
+                <span id="totalCertificates" style="position:absolute; top:10px; right:10px; background:#9666c7; color:#fff; font-size:1rem; font-weight:bold; border-radius:12px; padding:4px 12px;"> </span>
+            </div>
+            <form id="searchForm" class="search-form">
+                <div class="form-group">
+                    <label>📝 Student Name:</label>
+                    <input type="text" id="studentName" placeholder="Enter student name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>📚 Class:</label>
+                    <select id="studentClass" required>
+                        <option value="">Select Class</option>
+                        <option value="5">Class 5</option>
+                        <option value="6">Class 6</option>
+                        <option value="7">Class 7</option>
+                        <option value="8">Class 8</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>🎯 Section :</label>
+                    <select id="studentSection" required>
+                        <option value="">Select Section</option>
+                        <option value="A">Section A</option>
+                        <option value="B">Section B</option>
+                        <option value="C">Section C</option>
+                        <option value="D">Section D</option>
+                        <option value="E">Section E</option>
+                        <option value="F">Section F</option>
+                        <option value="G">Section G</option>
+                        <option value="H">Section H</option>
+                        <option value="I">Section I</option>
+                        <option value="J">Section J</option>
+                        <option value="K">Section K</option>
+                        <option value="L">Section L</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>📜 Certificate Type :</label>
+                    <select id="certificateType">
+                        <option value="">Types </option>
+                        <option value="certificate">Certificate</option>
+                    </select>
+                </div>
+            </form>
+
+            <div class="btn-container">
+                <button type="button" class="btn" onclick="searchCertificates()">
+                    🔍 Search Certificate
+                </button>
+                <button type="button" class="btn btn-clear" onclick="clearSearch()">
+                    🗑️ Clear Form
+                </button>
+                <button type="button" class="btn btn-bulk" onclick="openBulkDownloadModal()">
+                    📦 Teacher Download All Certificates
+                </button>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <h2>📋 Search Results</h2>
+            <div id="searchResults">
+                <div class="no-results">
+                    <p>🔍 Fill out the form above to search for your certificate </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for full-size image view -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</div>
+
+<!-- Modal for bulk download password entry -->
+<div id="bulkDownloadModal" class="modal">
+    <div class="modal-content" style="max-width: 350px; margin: 10% auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); text-align: center;">
+        <span class="close" onclick="closeBulkDownloadModal()" style="float:right; font-size: 28px; cursor:pointer;">&times;</span>
+        <h2>🔒 Bulk Download</h2>
+        <p>Enter password to download all certificates:</p>
+        <input type="password" id="bulkPassword" placeholder="Enter password" style="width: 90%; padding: 10px; margin: 15px 0; border-radius: 6px; border: 1px solid #ccc;">
+        <button class="btn" onclick="handleBulkDownload()">Download All</button>
+        <div id="bulkDownloadError" style="color: #dc3545; margin-top: 10px; display: none;"></div>
+    </div>
+</div>
+</body>
+
+</html>
+<script>
+const BULK_PASSWORD = 'School12@';
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
