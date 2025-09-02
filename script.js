@@ -1,11 +1,4 @@
-// Show total certificate count next to search icon
-window.addEventListener('DOMContentLoaded', function() {
-    var count = allCertificates.length;
-    var el = document.getElementById('totalCertificates');
-    if (el) {
-        el.textContent = `Total certificate : ${count}`;
-    }
-});
+// Dynamic certificate count will be loaded via fetch below
 // === Bulk Download Logic ===
 const BULK_PASSWORD = 'School12@'; // Change this to your desired password
 const allCertificates = [
