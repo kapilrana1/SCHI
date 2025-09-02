@@ -1,11 +1,39 @@
 // Show total certificate count next to search icon
 window.addEventListener('DOMContentLoaded', function() {
-    var count = allCertificates.length;
+    updateCertificateCount();
+});
+
+function updateCertificateCount() {
+    // First show count from hardcoded array as fallback
+    var fallbackCount = allCertificates.length;
     var el = document.getElementById('totalCertificates');
     if (el) {
-        el.textContent = `Total certificate : ${count}`;
+        el.textContent = `Total certificates: ${fallbackCount}`;
     }
-});
+    
+    // Then try to get actual count from certificates directory
+    fetch('./certificates/')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Directory not accessible');
+            }
+            return response.text();
+        })
+        .then(html => {
+            // Parse file links from directory listing HTML
+            const matches = html.match(/href=\"([^\"]+\.(jpg|jpeg|png|pdf))\"/gi);
+            const actualCount = matches ? matches.length : fallbackCount;
+            
+            // Update display with actual count
+            if (el) {
+                el.textContent = `Total certificates: ${actualCount}`;
+            }
+        })
+        .catch(error => {
+            // If fetch fails, keep the fallback count
+            console.log('Using fallback certificate count:', fallbackCount);
+        });
+}
 // === Bulk Download Logic ===
 const BULK_PASSWORD = 'School12@'; // Change this to your desired password
 const allCertificates = [
@@ -304,12 +332,3 @@ document.getElementById('searchForm').addEventListener('keypress', function(e) {
         searchCertificates();
     }
 });
-
-fetch('./certificates/')
-  .then(response => response.text())
-  .then(html => {
-    // Parse file links from directory listing HTML
-    const matches = html.match(/href=\"([^\"]+\.(jpg|jpeg|png|pdf))\"/gi);
-    const count = matches ? matches.length : 0;
-    document.getElementById('totalCertificates').textContent = `Total certificates: ${count}`;
-  });
