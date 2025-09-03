@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Community Hub -INDIA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Solar Community Hub -India</h1>
+            <p>Studets please  Search your Certificate and Download </p>
+            
+            <div class="setup-instructions">
+                <h3>Participation Instructions</h3>
+                <a href="https://forms.office.com/r/XfBnPEq3Ss">Online Form</a><br>
+                <ul style="list-style: disc; text-align: left; padding-left: 40px;">
+    <li>✔️Your certificate will be generated only after 24 hours of form submission, and this form is valid from 26th August to 7th September.</li>
+    <li>✔️Enter the name you used while taking the test; the certificate will also be available with the same name.</li>
+    <li>✔️If a student has not taken the exam, their certificate will not be available.</li>
+    <li>✔️Once the form date is over, no certificate will be generated after that date.</li>
+  </ul>
+            </div>
+        </div>
+
+        <div class="search-card">
+            <h2>🔍 Search Your Certificate</h2>
+            <form id="searchForm" class="search-form">
+                <div class="form-group" style="border:2px solid #764ba2; background:#f3f0fa; padding:12px; border-radius:10px; margin-bottom:18px;">
+                    <label style="font-weight:bold; color:#4b3fa7; font-size:1.1em;">🏫 School Name:</label>
+                    <select id="schoolName" required style="font-size:1.1em; font-weight:bold; background:#fffbe7; border:1.5px solid #764ba2; border-radius:6px; padding:8px 10px; margin-left:10px;">
+                        <option value="">Select School</option>
+                        <option value="SchoolA">School A</option>
+                        <option value="SchoolB">School B</option>
+                        <option value="SchoolC">School C</option>
+                        <!-- Add more schools as needed -->
+                    </select>
+                </div>
+                <div class="form-group" style="border:2px solid #764ba2; background:#f3f0fa; padding:12px; border-radius:10px; margin-bottom:18px;">
+                    <label style="font-weight:bold; color:#4b3fa7; font-size:1.1em;">📝 Student Name:</label>
+                    <input type="text" id="studentName" placeholder="Enter student name" required style="font-size:1.1em; font-weight:bold; background:#fffbe7; border:1.5px solid #764ba2; border-radius:6px; padding:8px 10px; margin-left:10px;">
+                </div>
+                <div class="form-group" style="border:2px solid #764ba2; background:#f3f0fa; padding:12px; border-radius:10px; margin-bottom:18px;">
+                    <label style="font-weight:bold; color:#4b3fa7; font-size:1.1em;">📚 Class:</label>
+                    <select id="studentClass" required style="font-size:1.1em; font-weight:bold; background:#fffbe7; border:1.5px solid #764ba2; border-radius:6px; padding:8px 10px; margin-left:10px;">
+                        <option value="">Select Class</option>
+                        <option value="5">Class 5</option>
+                        <option value="6">Class 6</option>
+                        <option value="7">Class 7</option>
+                        <option value="8">Class 8</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                </div>
+                <div class="form-group" style="border:2px solid #764ba2; background:#f3f0fa; padding:12px; border-radius:10px; margin-bottom:18px;">
+                    <label style="font-weight:bold; color:#4b3fa7; font-size:1.1em;">🎯 Section :</label>
+                    <select id="studentSection" required style="font-size:1.1em; font-weight:bold; background:#fffbe7; border:1.5px solid #764ba2; border-radius:6px; padding:8px 10px; margin-left:10px;">
+                        <option value="">Select Section</option>
+                        <option value="A">Section A</option>
+                        <option value="B">Section B</option>
+                        <option value="C">Section C</option>
+                        <option value="D">Section D</option>
+                        <option value="E">Section E</option>
+                        <option value="F">Section F</option>
+                        <option value="G">Section G</option>
+                        <option value="H">Section H</option>
+                        <option value="I">Section I</option>
+                        <option value="J">Section J</option>
+                        <option value="K">Section K</option>
+                        <option value="L">Section L</option>
+                    </select>
+                </div>
+                <div class="form-group" style="border:2px solid #764ba2; background:#f3f0fa; padding:12px; border-radius:10px; margin-bottom:18px;">
+                    <label style="font-weight:bold; color:#4b3fa7; font-size:1.1em;">📜 Certificate Type :</label>
+                    <select id="certificateType" style="font-size:1.1em; font-weight:bold; background:#fffbe7; border:1.5px solid #764ba2; border-radius:6px; padding:8px 10px; margin-left:10px;">
+                        <option value="">Types </option>
+                        <option value="certificate">Certificate</option>
+                    </select>
+                </div>
+            </form>
+
+            <div class="btn-container">
+                <button type="button" class="btn" onclick="searchCertificates()">🔍 Search Certificate</button>
+                <button type="button" class="btn btn-clear" onclick="clearSearch()">🗑️ Clear Form</button>
+                <button type="button" class="btn btn-bulk" onclick="openBulkDownloadModal()">📦 All Certificate Download</button>
+                <button type="button" class="btn btn-export" onclick="openExportExcelModal()">📑 Export to Excel (CSV)</button>
+                
+
+                <div class="no-results">
+                    <p>🔍 Fill out the form above to search for your certificate </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Results Container (must be inside main container) -->
+        <div id="searchResults" class="search-results"></div>
+    </div>
+
+    <!-- Modal for full-size image view -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+
+<!-- All Certificate Download Modal -->
+<div id="bulkDownloadModal" class="modal custom-modal" style="display:none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-dialog">
+        <span class="close" onclick="closeBulkDownloadModal()">&times;</span>
+        <h2>🔒 All Certificate Download</h2>
+        <p>Enter password to download all certificates as ZIP:</p>
+        <input type="password" id="bulkPassword" placeholder="Enter password" class="modal-input">
+        <div id="bulkDownloadError" class="modal-error"></div>
+        <button class="btn modal-btn" onclick="handleBulkDownload()">Download ZIP</button>
+    </div>
+</div>
+
+<!-- Export to Excel Modal -->
+<div id="exportExcelModal" class="modal custom-modal" style="display:none;">
+    <div class="modal-overlay"></div>
+    <div class="modal-dialog">
+        <span class="close" onclick="closeExportExcelModal()">&times;</span>
+        <h2>🔒 Export to Excel (CSV)</h2>
+        <p>Enter password to export all certificates to Excel (CSV):</p>
+        <input type="password" id="exportExcelPassword" placeholder="Enter password" class="modal-input">
+        <div id="exportExcelError" class="modal-error"></div>
+        <button class="btn modal-btn" onclick="handleExportExcel()">Export CSV</button>
+    </div>
+</div>
+
+<style>
+.custom-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(255,255,255,0.7);
+    z-index: 1;
+}
+.modal-dialog {
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+    padding: 32px 28px 24px 28px;
+    max-width: 370px;
+    width: 95vw;
+    text-align: center;
+    animation: modalPop 0.25s cubic-bezier(.4,2,.6,1) 1;
+}
+.modal-dialog h2 {
+    margin-bottom: 12px;
+    color: #4b3fa7;
+    font-size: 1.35em;
+    font-weight: 700;
+}
+.modal-dialog p {
+    color: #444;
+    margin-bottom: 16px;
+    font-size: 1em;
+}
+.modal-input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0 8px 0;
+    border-radius: 8px;
+    border: 1.5px solid #bdbdbd;
+    font-size: 1em;
+    outline: none;
+    transition: border 0.2s;
+}
+.modal-input:focus {
+    border: 1.5px solid #764ba2;
+}
+.modal-error {
+    color: #dc3545;
+    display: none;
+    margin-bottom: 10px;
+    font-size: 0.98em;
+}
+.modal-btn {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 1.08em;
+    padding: 13px 0;
+    border-radius: 8px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 2px 8px rgba(102,126,234,0.08);
+}
+.close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 1.5em;
+    color: #888;
+    cursor: pointer;
+    z-index: 3;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+.close:hover {
+    color: #dc3545;
+}
+@keyframes modalPop {
+    0% { transform: scale(0.8) translateY(40px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
