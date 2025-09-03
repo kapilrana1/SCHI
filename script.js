@@ -1,11 +1,13 @@
 // Show total certificate count next to search icon
 window.addEventListener('DOMContentLoaded', function() {
+    // Count is always sourced from allCertificates array for accuracy
     var count = allCertificates.length;
     var el = document.getElementById('totalCertificates');
     if (el) {
-        el.textContent = `Total certificate : ${count}`;
+        el.textContent = `Total certificates: ${count}`;
     }
 });
+
 // === Bulk Download Logic ===
 const BULK_PASSWORD = 'School12@'; // Change this to your desired password
 const allCertificates = [
@@ -198,7 +200,7 @@ function displayResults(certificates) {
                          alt="Certificate" 
                          class="certificate-preview" 
                          onclick="openModal('${cert.path}')"
-                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkNlcnRpZmljYXRlPC90ZXh0Pjwvc3ZnPg=='">
+                         onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi[...]'
                 ` : `
                     <div class="certificate-preview" style="display: flex; align-items: center; justify-content: center; background: #f0f0f0; color: #666;">
                         📄 ${cert.filename.split('.').pop().toUpperCase()} File
@@ -305,11 +307,4 @@ document.getElementById('searchForm').addEventListener('keypress', function(e) {
     }
 });
 
-fetch('./certificates/')
-  .then(response => response.text())
-  .then(html => {
-    // Parse file links from directory listing HTML
-    const matches = html.match(/href=\"([^\"]+\.(jpg|jpeg|png|pdf))\"/gi);
-    const count = matches ? matches.length : 0;
-    document.getElementById('totalCertificates').textContent = `Total certificates: ${count}`;
-  });
+// Directory listing fetch for certificate count removed; count is now always from allCertificates array.
