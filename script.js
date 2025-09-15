@@ -19,7 +19,7 @@ const allCertificates = [
   'MeesalaDoleshVardhan_6_A.jpg', 'NidhiSudarshanTambe_6_D.jpg', 'NikhilRoy_6_G.jpg', 'NivyanshKumar_6_A.jpg',
   'SahilKumar_8_H.jpg', 'SallyKumari_6_A.jpg', 'Shaunak_6_D.jpg', 'ShauryaVardhanSingh_6_D.jpg',
   'ShreyaKumari_8_H.jpg', 'SnehalChauhan_7_G.jpg', 'SomyajeetTarai_6_D.jpg', 'Swaati_6_D.jpg',
-  'TanmaiSuyal_9_E.jpg', 'Vaishnavi_6_G.jpg'
+  'TanmaiSuyal_9_E.jpg', 'Vaishnavi_6_G.jpg','SahilKumar_8_H.jpg','ShauryaSinghBani_6_G.jpg','ViditSingh_9_A.jpg'
 ];
 
 function openBulkDownloadModal() {
@@ -308,3 +308,4 @@ document.getElementById('searchForm').addEventListener('keypress', function(e) {
 });
 
 // Directory listing fetch for certificate count removed; count is now always from allCertificates array.
+
